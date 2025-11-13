@@ -16,7 +16,6 @@ jiter==0.11.0
 openai==1.107.2
 pydantic==2.11.9
 pydantic_core==2.33.2
-pypiwin32==223
 pyttsx3==2.99
 pytz==2025.2
 setuptools==78.1.0
@@ -28,4 +27,5 @@ typing-inspection==0.4.1
 typing_extensions==4.15.0
 tzdata==2025.2
 zope.interface==7.2
+
 
