@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d+o--2eps-jqs9$mozx@v&c+qb7wdtei#5#ciw_0vxm%vsv=pz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stafftrack-3.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -125,3 +125,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, "static")
 ]
+
