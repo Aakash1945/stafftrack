@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance | StaffTrack</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .card { border-radius: 15px; }
+    .btn { border-radius: 30px; padding: 10px 25px; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#0d6efd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">StaffTrack</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Attendance Tracking</h2>
+
+    <div class="card p-4 shadow-sm">
+      <h5>👤 Logged in as: <strong>Devesh34</strong></h5>
+      <p>📅 Date: <span id="today-date"></span></p>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-success m-2" id="checkin-btn">Check In</button>
+        <button class="btn btn-danger m-2" id="checkout-btn">Check Out</button>
+      </div>
+
+      <div class="alert alert-info mt-4" id="status">No activity yet</div>
+
+      <h5 class="mt-4">Recent Records</h5>
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr><th>Date</th><th>Check In</th><th>Check Out</th><th>Hours</th></tr>
+        </thead>
+        <tbody id="record-table">
+          <tr><td>06-Nov-2025</td><td>09:58 AM</td><td>06:10 PM</td><td>8h 12m</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // show today's date
+    document.getElementById("today-date").innerText = new Date().toLocaleDateString();
+
+    const status = document.getElementById("status");
+    document.getElementById("checkin-btn").onclick = () => {
+      const time = new Date().toLocaleTimeString();
+      status.className = "alert alert-success";
+      status.innerText = `✅ Checked in at ${time}`;
+    };
+    document.getElementById("checkout-btn").onclick = () => {
+      const time = new Date().toLocaleTimeString();
+      status.className = "alert alert-warning";
+      status.innerText = `🚪 Checked out at ${time}`;
+    };
+  </script>
+
+</body>
+</html>

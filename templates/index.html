@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StaffTrack | Attendance & Payroll System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background: #0d47a1;
+      color: white;
+      padding: 12px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffca28;
+    }
+
+    .btn {
+      background: #ffca28;
+      color: #0d47a1;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background: #ffca28;
+      color: #0d47a1;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .features {
+      background: white;
+    }
+
+    .features h2, .about h2, .dashboard h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .about {
+      background: #f0f4ff;
+      max-width: 800px;
+      margin: auto;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .login {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .login input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .login button {
+      width: 100%;
+      padding: 10px;
+      background: #0d47a1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .dashboard {
+      display: none;
+      background: #fff;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 30px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .dashboard th, .dashboard td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    .attendance-controls button {
+      margin: 10px;
+      padding: 10px 16px;
+      background: #0d47a1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">StaffTrack</div>
+      <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#login" class="btn">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Streamline Your Staff Attendance & Payroll</h1>
+    <p>Smart, simple, and professional way to manage employees.</p>
+    <a href="#login" class="btn-primary">Get Started</a>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <a href="{% url 'attendance' %}">
+      <div class="card"><h3>🕒 Attendance Tracking</h3><p>Mark check-in and check-out easily.</p></div></a>
+      <a href="{% url 'payment' %}">
+      <div class="card"><h3>💰 Payroll Calculation</h3><p>Auto calculate working hours and salaries.</p></div></a>
+      <a href="{% url 'role' %}">
+      <div class="card"><h3>🔐 Secure Access</h3><p>Separate role-based login system.</p></div></a>
+      <a href="{% url 'report' %}">
+      <div class="card"><h3>📊 Reports</h3><p>View and export attendance records.</p></div>
+    </div></a>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About StaffTrack</h2>
+    <p>
+      StaffTrack is a modern attendance and payroll solution designed for small and medium-sized businesses.
+      Our goal is to simplify daily operations, improve staff management, and enhance productivity.
+    </p>
+    <p>Version 1.0 | Developed by Aakash and Aman</p>
+  </section>
+
+  <section id="login" class="login">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="login-msg" style="color:red; margin-top:8px;"></p>
+  </section>
+
+  <section id="dashboard" class="dashboard">
+    <h2>Welcome, <span id="userDisplay"></span> 👋</h2>
+    <div class="attendance-controls">
+      <button id="checkInBtn">Check In</button>
+      <button id="checkOutBtn" disabled>Check Out</button>
+      <p id="status" style="margin-top:10px;"></p>
+    </div>
+    <table id="logTable">
+      <tr><th>Date</th><th>Check In</th><th>Check Out</th><th>Hours</th></tr>
+    </table>
+    <h3 style="margin-top:20px;">Monthly Salary: ₹<span id="salary">0</span></h3>
+  </section>
+
+  <footer>
+    <p>© 2025 StaffTrack. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let isCheckedIn = false;
+    let salary = 0;
+    let hourlyRate = 200;
+    let checkInTime, checkOutTime;
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("login-msg");
+      if (username && password) {
+        document.getElementById("userDisplay").innerText = username;
+        document.getElementById("login").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        window.location.hash = "#dashboard";
+      } else {
+        msg.innerText = "Please enter valid credentials!";
+      }
+    }
+
+    const checkInBtn = document.getElementById("checkInBtn");
+    const checkOutBtn = document.getElementById("checkOutBtn");
+    const status = document.getElementById("status");
+    const logTable = document.getElementById("logTable");
+    const salaryDisplay = document.getElementById("salary");
+
+    checkInBtn.addEventListener("click", () => {
+      if (!isCheckedIn) {
+        checkInTime = new Date();
+        isCheckedIn = true;
+        checkInBtn.disabled = true;
+        checkOutBtn.disabled = false;
+        status.innerText = Checked in at ${checkInTime.toLocaleTimeString()};
+      }
+    });
+
+    checkOutBtn.addEventListener("click", () => {
+      if (isCheckedIn) {
+        checkOutTime = new Date();
+        isCheckedIn = false;
+        const hours = ((checkOutTime - checkInTime) / 3600000).toFixed(2);
+        salary += hours * hourlyRate;
+        const row = `<tr>
+          <td>${new Date().toLocaleDateString()}</td>
+          <td>${checkInTime.toLocaleTimeString()}</td>
+          <td>${checkOutTime.toLocaleTimeString()}</td>
+          <td>${hours}</td>
+        </tr>`;
+        logTable.insertAdjacentHTML("beforeend", row);
+        salaryDisplay.innerText = salary.toFixed(2);
+        checkInBtn.disabled = false;
+        checkOutBtn.disabled = true;
+        status.innerText = Checked out at ${checkOutTime.toLocaleTimeString()};
+      }
+    });
+  </script>
+</body>
+</html>
